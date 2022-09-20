@@ -1,30 +1,62 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import Picture from './components/Picture';
 import './index.css';
 
-// function App( {title} ){
-//     return(
-//         <h1 className="text-center text-blue-500 text-4xl">{title}</h1>
-       
-//     )
-// }
+function App(  ){
 
-class App extends React.Component {
+    const [show, setShow] = useState(false);
+    const [title, setTitle] = useState('Coucou les Amis !');
 
-    constructor(props){
-        super(props);
-        this.state = { show: false};
+    useEffect(() => console.log('composant app monté'), []);
+
+    function handleClick(){
+        setShow(!show);
+        
     }
-   render(){
-    return <div>
+
+        return  (
+        <div>
+            {console.log('jsx render')}
+        <h1 className="text-4xl text-purple-700 my-5">{title}</h1>
         <button className="bg-purple-900 text-white rounded py-2 px3"
-         onClick={ ()=> this.setState( {show : !this.state.show})  }>Click !</button>
+         onClick={ handleClick }>Click !</button>
         {
-            this.state.show ?
-            <img className="w-40 mx-auto" src="motos.jpg"></img>
+            show ?
+         <Picture />
             :null
         }
        
-    </div>;
-   } 
+    </div>
+    );
+       
 }
+
+// class App extends React.Component {
+
+//     constructor(props){
+//         super(props);
+//         this.state = { show: false, title:"coucou"};
+//     }
+
+//     componentDidMount(){
+//         this.setState({ title:'composant ok '})
+//     }
+
+//     componentDidUpdate(){
+//         console.log('composant mis à jour');
+//     }
+//    render(){
+//     return <div>
+//         <h1 className="text-4xl text-purple-700 my-5">{this.state.title}</h1>
+//         <button className="bg-purple-900 text-white rounded py-2 px3"
+//          onClick={ ()=> this.setState( {show : !this.state.show})  }>Click !</button>
+//         {
+//             this.state.show ?
+//          <Picture />
+//             :null
+//         }
+       
+//     </div>;
+//    } 
+// }
 export default App;
